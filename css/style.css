@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+p{
+    margin-bottom: 0;
+}
+#main{
+    width: 100%;
+    height: 100vh;
+    background-image: url('/images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.city{
+    font-size: 28px;
+    font-weight: 700;
+}
+.weather-icon{
+    width: 35px;
+    height: 35px;
+}
+.weather-img{
+    width: 130px;
+    height: 130px;
+}
+#searchBtn{
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+#weatherDetails{
+    display: none;
+}
+
+#error{
+    display: none;
+}
+p{
+    font-weight: 700;
+    margin-bottom: 0;
+}

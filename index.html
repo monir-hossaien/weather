@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--    <link rel="stylesheet" href="css/milligram.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>weather</title>
+</head>
+<body>
+
+<section id="main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="mt-4">
+                    <div class="d-flex gap-2">
+                        <input id="searchInput" type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="input-group-button-right">
+                        <button onclick="weatherInfo()" id="searchBtn">Submit</button>
+                    </div>
+
+
+                    <p class="text-danger mt-2" id="error"></p>
+
+                    <div id="weatherDetails" class="text-white">
+                        <div class=" d-flex justify-content-center my-4">
+                            <img class="img-fluid weather-img" src="./images/clear.png" alt="icon.png">
+                        </div>
+                        <h2 class="weather-temp text-center"></h2>
+                        <h2 class="city text-center fw-bold "></h2>
+                        <h3 class="date text-center mt-2 fs-5"></h3>
+                        <h3 class="rain-situation text-center mt-2 mb-0"></h3>
+
+                        <div class="row">
+                            <div class="col-6">
+                               <div class="d-flex justify-content-start align-items-center gap-2 my-4">
+                                   <img src="./images/humidity.png" alt="" class="weather-icon">
+                                   <div class="">
+                                       <p class="humidity fs-5">0%</p>
+                                       <p class="small">Humidity</p>
+                                   </div>
+                               </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="d-flex justify-content-end align-items-center gap-2 my-4">
+                                    <img src="./images/wind.png" alt="" class="weather-icon">
+                                    <div class="">
+                                        <p class="wind fs-5">0.00</p>
+                                        <p class=" small">Wind speed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h6 class="sunrise"></h6>
+                            </div>
+                            <div class="col-6">
+                                <h6 class="sunset d-flex justify-content-end"></h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/index.js"></script>
+
+</body>
+</html>
