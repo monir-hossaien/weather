@@ -98,111 +98,111 @@ searchButton.addEventListener('click', () => {
 
 // oop
 
-class WeatherApp {
-    constructor(apiKey) {
-        this.apiKey = apiKey;
-        this.URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
-
-        // Selectors
-        this.searchBox = document.getElementById("searchInput");
-        this.searchButton = document.getElementById("searchBtn");
-        this.weatherDetails = document.getElementById("weatherDetails");
-        this.weatherLocation = document.querySelector(".city");
-        this.humidity = document.querySelector(".humidity");
-        this.windSpeed = document.querySelector(".wind");
-        this.weatherImg = document.querySelector(".weather-img");
-        this.weatherTemp = document.querySelector(".weather-temp");
-        this.sunrise = document.querySelector(".sunrise");
-        this.sunset = document.querySelector(".sunset");
-        this.rainSituation = document.querySelector(".rain-situation");
-        this.dateInfo = document.querySelector(".date");
-        this.errorDisplay = document.getElementById("error");
-
-        // Date options
-        this.dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-
-        // Event Listeners
-        this.addEventListeners();
-    }
-
-    // Method to fetch weather data
-    async fetchWeather(city) {
-        try {
-            let res = await axios.get(this.URL + city + `&appid=${this.apiKey}`);
-            let data = res.data;
-            this.displayWeather(data);
-        } catch (error) {
-            console.log(error);
-            this.displayError();
-        }
-    }
-
-    // Method to display weather details
-    displayWeather(data) {
-        this.errorDisplay.style.display = 'none'; // Hide error if it was displayed
-
-        this.weatherDetails.style.display = 'block';
-        this.weatherTemp.innerHTML = Math.round(data.main.temp) + "°C";
-        this.rainSituation.innerHTML = data.weather[0].description;
-        this.weatherLocation.innerHTML = `${data.name}, ${data.sys.country}`;
-        this.dateInfo.innerHTML = new Date(data.dt * 1000).toLocaleDateString('en-US', this.dateOptions);
-        this.humidity.innerHTML = data.main.humidity + '%';
-        this.windSpeed.innerHTML = data.wind.speed + 'km/h';
-        this.sunrise.innerHTML = `Sunrise ${new Date(data.sys.sunrise * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
-        this.sunset.innerHTML = `Sunset ${new Date(data.sys.sunset * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
-
-        // Set weather image based on weather condition
-        this.setWeatherImage(data.weather[0].main);
-    }
-
-    // Method to set weather image
-    setWeatherImage(weatherCondition) {
-        switch (weatherCondition) {
-            case "Drizzle":
-                this.weatherImg.src = '/images/drizzle.png';
-                break;
-            case "Rain":
-                this.weatherImg.src = '/images/rain.png';
-                break;
-            case "Clear":
-                this.weatherImg.src = '/images/clear.png';
-                break;
-            case "Mist":
-                this.weatherImg.src = '/images/mist.png';
-                break;
-            case "Snow":
-                this.weatherImg.src = '/images/snow.png';
-                break;
-            case "Clouds":
-                this.weatherImg.src = '/images/clouds.png';
-                break;
-            default:
-                this.weatherImg.src = '/images/default.png'; // Fallback image
-                break;
-        }
-    }
-
-    // Method to display error
-    displayError() {
-        this.weatherDetails.style.display = 'none';
-        this.errorDisplay.style.display = 'block';
-    }
-
-    // Method to add event listeners
-    addEventListeners() {
-        // Event listener for 'Enter' key in search input
-        this.searchBox.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                this.fetchWeather(this.searchBox.value);
-            }
-        });
-
-        // Event listener for search button click
-        this.searchButton.addEventListener('click', () => {
-            this.fetchWeather(this.searchBox.value);
-        });
-    }
-}
-
-// Initialize the app
-const weatherApp = new WeatherApp('3dcb5314017a1078e75cb6fa9ca9b1bb');
+// class WeatherApp {
+//     constructor(apiKey) {
+//         this.apiKey = apiKey;
+//         this.URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+//
+//         // Selectors
+//         this.searchBox = document.getElementById("searchInput");
+//         this.searchButton = document.getElementById("searchBtn");
+//         this.weatherDetails = document.getElementById("weatherDetails");
+//         this.weatherLocation = document.querySelector(".city");
+//         this.humidity = document.querySelector(".humidity");
+//         this.windSpeed = document.querySelector(".wind");
+//         this.weatherImg = document.querySelector(".weather-img");
+//         this.weatherTemp = document.querySelector(".weather-temp");
+//         this.sunrise = document.querySelector(".sunrise");
+//         this.sunset = document.querySelector(".sunset");
+//         this.rainSituation = document.querySelector(".rain-situation");
+//         this.dateInfo = document.querySelector(".date");
+//         this.errorDisplay = document.getElementById("error");
+//
+//         // Date options
+//         this.dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+//
+//         // Event Listeners
+//         this.addEventListeners();
+//     }
+//
+//     // Method to fetch weather data
+//     async fetchWeather(city) {
+//         try {
+//             let res = await axios.get(this.URL + city + `&appid=${this.apiKey}`);
+//             let data = res.data;
+//             this.displayWeather(data);
+//         } catch (error) {
+//             console.log(error);
+//             this.displayError();
+//         }
+//     }
+//
+//     // Method to display weather details
+//     displayWeather(data) {
+//         this.errorDisplay.style.display = 'none'; // Hide error if it was displayed
+//
+//         this.weatherDetails.style.display = 'block';
+//         this.weatherTemp.innerHTML = Math.round(data.main.temp) + "°C";
+//         this.rainSituation.innerHTML = data.weather[0].description;
+//         this.weatherLocation.innerHTML = `${data.name}, ${data.sys.country}`;
+//         this.dateInfo.innerHTML = new Date(data.dt * 1000).toLocaleDateString('en-US', this.dateOptions);
+//         this.humidity.innerHTML = data.main.humidity + '%';
+//         this.windSpeed.innerHTML = data.wind.speed + 'km/h';
+//         this.sunrise.innerHTML = `Sunrise ${new Date(data.sys.sunrise * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
+//         this.sunset.innerHTML = `Sunset ${new Date(data.sys.sunset * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
+//
+//         // Set weather image based on weather condition
+//         this.setWeatherImage(data.weather[0].main);
+//     }
+//
+//     // Method to set weather image
+//     setWeatherImage(weatherCondition) {
+//         switch (weatherCondition) {
+//             case "Drizzle":
+//                 this.weatherImg.src = '/images/drizzle.png';
+//                 break;
+//             case "Rain":
+//                 this.weatherImg.src = '/images/rain.png';
+//                 break;
+//             case "Clear":
+//                 this.weatherImg.src = '/images/clear.png';
+//                 break;
+//             case "Mist":
+//                 this.weatherImg.src = '/images/mist.png';
+//                 break;
+//             case "Snow":
+//                 this.weatherImg.src = '/images/snow.png';
+//                 break;
+//             case "Clouds":
+//                 this.weatherImg.src = '/images/clouds.png';
+//                 break;
+//             default:
+//                 this.weatherImg.src = '/images/default.png'; // Fallback image
+//                 break;
+//         }
+//     }
+//
+//     // Method to display error
+//     displayError() {
+//         this.weatherDetails.style.display = 'none';
+//         this.errorDisplay.style.display = 'block';
+//     }
+//
+//     // Method to add event listeners
+//     addEventListeners() {
+//         // Event listener for 'Enter' key in search input
+//         this.searchBox.addEventListener('keypress', (event) => {
+//             if (event.key === 'Enter') {
+//                 this.fetchWeather(this.searchBox.value);
+//             }
+//         });
+//
+//         // Event listener for search button click
+//         this.searchButton.addEventListener('click', () => {
+//             this.fetchWeather(this.searchBox.value);
+//         });
+//     }
+// }
+//
+// // Initialize the app
+// const weatherApp = new WeatherApp('3dcb5314017a1078e75cb6fa9ca9b1bb');
